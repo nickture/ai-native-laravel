@@ -127,6 +127,24 @@ paths:
 
 The files stay in `specs/foundation/`, so the whole Foundation sits in one folder. The symlinks only tell Claude Code when to load them.
 
+## Several products
+
+A company with an app, a website and marketing has several products, and its Foundation gets layers: what the company is, what this product is and who it’s for, the technology, then design and text. The company layer goes into every session of every product, so it stays short. Overy is one product, so this sample has no company layer.
+
+- **One repository.** The company layer is one more file, `specs/foundation/company.md`, and one more line in the Blade file, above the product’s core:
+
+  ```blade
+  {!! file_get_contents(base_path('specs/foundation/company.md')) !!}
+  ```
+
+- **A repository per product.** The company layer lives in a repository of its own, shared by every product as a Composer package or a git submodule. A second file in `.ai/guidelines/`, named after the company, pulls it in. Boost adds every file from that folder, so the product’s own file stays as it is:
+
+  ```blade
+  {!! file_get_contents(base_path('vendor/your-company/foundation/company.md')) !!}
+  ```
+
+Design and text split the same way: the company’s file holds the brand, and the product’s file holds where the product differs from it.
+
 ## Skills
 
 Two kinds of skills work in this project.
@@ -162,13 +180,15 @@ The interface stands on two things the project doesn’t write itself: [shadcn-s
 - **Components.** shadcn-svelte sits in `resources/js/components/ui/` as vendor code. The rule is to leave it unedited and update it through the shadcn CLI. Overy broke this rule before the rule was written, and [`observations.md`](specs/work/observations.md) lists the files to move out. Overy’s own look and behavior go into wrappers outside `ui/`, and so do its own primitives. A new primitive appears only when nothing ready exists, and the reason is written in [`design.md`, section 15](specs/foundation/design.md#15-components).
 - **Styles.** Tailwind utilities on top of the design tokens in `app.css`. A component takes values only from tokens, and a missing token is added to `@theme` before it is used. The spacing step, breakpoints and the canonical form of utilities are in [section 6](specs/foundation/design.md#6-layout), the token rule is in [section 14](specs/foundation/design.md#14-tokens-before-components).
 
-So the agent builds a new screen from existing components and tokens, and the screen looks like the rest of the product from the first version.
+`design.md` records only where the product differs from the library’s defaults: radii, typefaces, colors, density, character. Components use semantic tokens such as `success` and `error`, never a raw green or red, and `app.css` maps each token to its value. Changing the brand then means changing values, not components.
+
+The order is set by the principle “Canonical first” in [`project.md`](specs/foundation/project.md): the framework, its documentation and the vendor components come before anything of our own. So the agent builds a new screen from existing components and tokens, and the screen looks like the rest of the product from the first version.
 
 ## How a feature goes
 
 The process rests on one fact: with the agent, a feature works in the product from the first day, and later versions differ only in how refined they are. This is what design in code means. The whole process is in [`process.md`](specs/foundation/process.md): roles, the path from an idea to the main branch, what a plan holds, how work is shown and reviewed, and when it counts as done. In short:
 
-1. **An idea lands in the tracker.** Overy uses its own vault, and a team may use Jira or Linear. The agent reads the tracker through MCP, asks its questions there and writes the answers back, so nothing stays only in a chat.
+1. **An idea lands in the tracker** with the metric it should move. Overy uses its own vault, and a team may use Jira or Linear. The agent reads the tracker through MCP, asks its questions there and writes the answers back, so nothing stays only in a chat.
 2. **The agent writes a plan in plan mode.** A person approves it, and it goes to `specs/work/plans/`. It has the context, the decisions, milestones, corner cases that become tests, a design review and the verification steps.
 3. **The product manager or designer builds the first version in a branch.** This is design in code: the agent builds the feature in the product, with its architecture, its components and development data, without a separate mockup. The first version may look raw. It is shown as a link or a recording, with a note on what to judge and what isn’t ready.
 4. **Specialists review the branch.** The frontend developer, the backend developer and anyone whose area the change touches review it and refine the same branch, not rebuild it. It goes into the main branch when every reviewer accepts it and the checks are green.

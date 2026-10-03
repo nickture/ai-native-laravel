@@ -19,7 +19,8 @@ A double usefulness test at every iteration:
 - **Schema-free evolution.** No required fields. A new use case → the user adds fields and a trait instead of asking for a feature.
 - **Progressive disclosure.** The full schema is in code from day 1; the UI reveals it per node based on behavior, without a global “advanced mode”.
 - **Crypto boundary from day 1.** All sync operations and controllers write through `ContentCodec`. MVP: `PassthroughCodec` (no-op, the server sees plaintext); Phase 9: `SodiumCodec` without rewriting domain code.
-- **Design in code.** A new feature is built in the product right away: on its architecture, existing components and development data, without a separate mockup. The first version may be rough; after that it is refined, not rebuilt from scratch. A new UI primitive appears only when no ready-made one exists, and the reason is recorded in `specs/foundation/design.md`.
+- **Design in code.** A new feature is built in the product right away: on its architecture, existing components and development data, without a separate mockup. The first version may be rough; after that it is refined, not rebuilt from scratch. New components follow “Canonical first”, and the reason for each one is recorded in `specs/foundation/design.md`.
+- **Canonical first.** The framework’s way, its official documentation and the official vendor components come before anything of our own. A new component is invented only when the existing ones can’t solve the task, and an existing component is not redrawn: our own look goes into a wrapper. Our own code where the framework already has a way needs a strong reason. When the documentation has no answer, the agent says so and asks instead of guessing.
 
 ## How project knowledge is organized
 

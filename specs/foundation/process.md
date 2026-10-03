@@ -13,6 +13,7 @@ paths:
 - **Versions differ only in how refined they are.** The first version is rough: a generic look, no illustrations, some states unfinished. Each pass refines the same feature, the way a progressive JPEG shows the whole picture at once and sharpens with every pass. Nothing is thrown away and redone from scratch.
 - **Decisions are made on the working version.** The team judges a feature by clicking through it. Edge cases show up at the first demo, and a wrong decision costs one more pass, not a redesign.
 - **A mockup first needs a strong reason.** The product itself is where a feature is designed, and a Figma mockup drawn before the code is an exception, not a step. A mockup shows one state of one screen, hides the cases a working version shows at the first click, and has to be built a second time in code. A reason that holds is a visual the code can’t produce yet, such as an illustration or a marketing image. The reason is written in the plan.
+- **Visuals come from image and video models.** Illustrations, images and video that code can’t produce are generated through MCP by image and video models, under a token budget of their own. The result goes into the product as an ordinary asset.
 
 ## 2. Roles
 
@@ -28,21 +29,24 @@ paths:
 
 - **Every idea starts in the tracker.** Ideas, tasks and questions to the owner go into the tracker (Jira, Linear and the like), not into a chat or into `specs/`. The agent reads and updates it through MCP. A chat gets lost, and the tracker keeps the history.
 - **The agent works the tracker.** It takes the items it understands and sets their state. In an item it doesn’t understand, it asks a question and writes the answer back into the item. A decision never stays only in a conversation.
+- **A hypothesis names its metric.** The tracker item and the plan say what the feature should change and how that is measured. By this the product manager decides what goes to a test and what doesn’t. A feature without a metric can’t be called a success or a failure.
 - **A feature gets its own branch.** The branch starts from the main line and goes back into it only after review. Which branch is the main line and how it reaches production is in `.claude/CLAUDE.md`. A mistake in a branch costs nothing, and on the main line it reaches users.
 - **The product manager or designer builds the first version.** They describe the hypothesis to the agent in plain words, and the agent builds it in the product: on its architecture, with existing components and development data, without a mockup first (section 1).
 - **Production data is never at risk.** The development database is always separate from production, and nothing in a branch can write to the production database.
 - **Sensitive data stays in production.** If the data isn’t sensitive, development may run on a copy of production data, which brings real volume and real edge cases early. Personal, financial and customer data is never copied: then the branch runs on demo data, seeded or invented, without real brands or customers.
 - **A draft is shown with a frame.** Before the demo the author says what to judge now (the flow, the structure, the copy) and what is not ready yet. Open doubts are listed next to the work. A hidden doubt is found later, when the fix costs more.
-- **A demo is a link or a recording.** The branch runs on a preview environment, or the author records the screen. People watch it when it suits them and can come back to it.
+- **A demo is a link or a recording.** The branch runs on a preview environment that opens in a browser and on a phone, or the author records the screen. People watch it when it suits them and can come back to it.
 - **After the demo the same branch grows.** States, polish, motion and assets are added to it, by the rule of section 1.
+- **Two options, two branches.** When the team can’t choose between two solutions, the agent builds both in two branches, and they are compared working, side by side. One goes on to review, and the other branch is closed. With the agent a second option is cheap, and arguing over options imagined in the head settles nothing.
 - **Specialists review before the merge.** The frontend developer reviews the interface code, the backend developer the data and queries, and each specialist whose area the change touches reviews that part. They push their fixes into the same branch. The feature reaches the main line when every reviewer accepts it and the checks are green.
 - **People push and merge.** The agent commits. A person pushes, merges and promotes. Published history is never rewritten.
+- **The Foundation is reviewed like code.** At the product manager’s initiative the agent drafts the Foundation in a branch. The frontend developer accepts `design.md`, the backend developer accepts `requirements.md`, and the product manager owns `project.md`, `text.md` and this file. The people who will work by the rules accept them before the merge.
 
 ## 4. Plans
 
 - **A non-trivial change starts with a plan.** The agent writes it in plan mode, and a person approves it. The first step of the work copies the plan to `specs/work/plans/<name>-execution.md`, because a plan outside the repository is lost with the session.
 - **Questions come before the plan.** The agent reads the Foundation, the docs and the code it will touch, and confirms each premise in both the docs and the source. Open questions go to the owner before the plan is written, not halfway through the work.
-- **A plan has fixed parts.** Context: why, what prompted it, the intended outcome. Decisions: only the chosen approach. Then concept, UX and implementation, in that order. Milestones, each of which leaves the product working. Corner cases, each of which becomes a test. A design review against SOLID, GRASP, GoF, KISS, DRY and YAGNI. Verification: how to prove the result end to end. A plan without a design review is not sent for approval.
+- **A plan has fixed parts.** Context: why, what prompted it, the intended outcome and its metric. Decisions: only the chosen approach. Then concept, UX and implementation, in that order. Milestones, each of which leaves the product working. Corner cases, each of which becomes a test. A design review against SOLID, GRASP, GoF, KISS, DRY and YAGNI. Verification: how to prove the result end to end. A plan without a design review is not sent for approval.
 - **A plan describes the current pass.** It holds no history of earlier versions. One plan covers one piece of work, and separate plans are not merged.
 - **Each open question has a status.** Decided, hypothesis, being explored or parked. A disputed decision is made once for the whole product and written into the Foundation, so the argument doesn’t restart on every screen.
 
@@ -56,6 +60,8 @@ paths:
 
 ## 6. Review
 
+- **A review is understanding.** The reviewer understands what the agent did and can explain it. A change that nobody can explain is not merged, however green the checks are.
+- **Review sets the pace.** The amount of work is planned by what the reviewers can take in, not by how fast the agent generates. With the agent a week can hold a year’s worth of features, and every one of them still passes through the same people.
 - **A review starts with what works.** Then what is missing, then the next step.
 - **A quick pass comes first, then the full one.** First the impression and coherence, then the three to five most visible problems, then every rule of `nickture-interface` and `nickture-text-ru`.
 - **A finding is concrete and proven.** It names the element, the discrepancy, the broken rule and one fix: “the card radius is 12 and its neighbor’s is 16, make both 16”, not “I don’t like it”. A claim that wasn’t checked is marked as an assumption.
