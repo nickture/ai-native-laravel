@@ -1,6 +1,6 @@
 # Overy — project guidelines
 
-Project context for Claude Code on top of the root `CLAUDE.md`. Boost assembles the Foundation core, `specs/foundation/project.md` and `requirements.md`, into the root `CLAUDE.md`, so the mission, principles, stack and invariants are not repeated here. How project knowledge is organized (layers, precedence, plan lifecycle): `project.md`, section “How project knowledge is organized”. `design.md` and `text.md` load on their own when the agent reads or edits the frontend and copy.
+Project context for Claude Code on top of the root `CLAUDE.md`. Boost assembles the Foundation core, `specs/foundation/project.md` and `requirements.md`, into the root `CLAUDE.md`, so the mission, principles, stack and invariants are not repeated here. How project knowledge is organized (layers, precedence, plan lifecycle): `project.md`, section “How project knowledge is organized”. `design.md` and `text.md` load on their own when the agent reads or edits the frontend and copy, and `process.md` when it reads or writes a plan.
 
 ## Where things are
 

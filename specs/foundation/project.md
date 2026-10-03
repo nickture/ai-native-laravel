@@ -25,7 +25,7 @@ A double usefulness test at every iteration:
 
 | Where | What lives there | How it reaches the agent |
 |---|---|---|
-| `specs/foundation/` | Why the product exists and by which rules: `project.md`, `requirements.md`, `design.md` (design system), `text.md` (readers, tone, vocabulary) | `project.md` and `requirements.md`: in every session through Boost. `design.md` and `text.md` load when the agent reads or edits the frontend and copy (symlinks in `.claude/rules/`) |
+| `specs/foundation/` | Why the product exists and by which rules: `project.md`, `requirements.md`, `design.md` (design system), `text.md` (readers, tone, vocabulary), `process.md` (how work goes from an idea to the main branch) | `project.md` and `requirements.md`: in every session through Boost. `design.md` and `text.md` load when the agent reads or edits the frontend and copy, `process.md` when it reads or writes a plan (symlinks in `.claude/rules/`) |
 | `specs/docs/` | As built: architecture, UX, node invariants, commands | By link |
 | `specs/work/` | What is in progress: `roadmap.md`, the debt registry `observations.md`, active plans, open phases | By link |
 | `specs/archive/` | Completed plans and closed phases | Not read unless asked |
