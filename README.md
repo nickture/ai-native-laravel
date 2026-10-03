@@ -63,7 +63,7 @@ The agent pays for its context on every request, so only the core goes into ever
 | Project notes | [`.claude/CLAUDE.md`](.claude/CLAUDE.md) | Every session in Claude Code |
 | Design and text | [`design.md`](specs/foundation/design.md), [`text.md`](specs/foundation/text.md) | Claude Code loads them when the agent reads or edits a matching file. Other agents follow the links in `project.md` |
 | Code rules | [`.ai/rules/`](.ai/rules/index.md) | Before editing a file whose path is in `index.md`. The Boost guidelines in `CLAUDE.md` tell the agent to check |
-| Skills | Boost skills, [nickture skills](https://github.com/nickture/skills) | When the task matches a skill’s description |
+| Skills | Boost skills, [nickture skills](https://github.com/nickture/skills) | Boost skills when the task matches a skill’s description. nickture skills on every change to the interface or to a text |
 | Docs and work | [`specs/docs/`](specs/docs/), [`specs/work/`](specs/work/) | When a document links to them |
 | Tracker | Ideas, tasks, questions to the owner | Through MCP |
 | Archive | [`specs/archive/`](specs/archive/) | Only when asked |
@@ -144,13 +144,13 @@ Two kinds of skills work in this project.
 └── wayfinder-development/
 ```
 
-**[nickture skills](https://github.com/nickture/skills).** `nickture-interface` checks an interface, and `nickture-text-ru` checks Russian text. `design.md` answers the questions from the “What to define” section of `nickture-interface`: brand, character, color, scales, motion, browsers and so on. To install them:
+**[nickture skills](https://github.com/nickture/skills).** They are the default rules for the interface and for text. `nickture-interface` covers layout, styles, components, states, accessibility and motion. `nickture-text-ru` covers Russian text, and an English version is planned. The agent reads the skill on every change to the interface or to a text and checks the finished work against it. Both Foundation files say this in their first lines: the rules of the skill apply unless the file says otherwise. `design.md` itself answers the questions from the “What to define” section of `nickture-interface`: brand, character, color, scales, motion, browsers and so on. To install the skills:
 
 ```bash
 npx skills add nickture/skills
 ```
 
-**Precedence.** The Foundation is stronger than skills, `.ai/rules` and plans. When the project breaks a skill’s rule on purpose, the reason is written in the Foundation, and the agent follows the Foundation.
+**Precedence.** Where the Foundation says nothing, a skill rule applies. Where the two disagree, the Foundation wins: it is stronger than skills, `.ai/rules` and plans. When the project breaks a skill’s rule on purpose, the reason is written in the Foundation.
 
 ## Components and styles
 
