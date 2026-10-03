@@ -166,7 +166,7 @@ So the agent builds a new screen from existing components and tokens, and the sc
 
 ## How a feature goes
 
-The whole process is in [`process.md`](specs/foundation/process.md): roles, the path from an idea to the main branch, what a plan holds, how work is shown and reviewed, and when it counts as done. In short:
+The process rests on one fact: with the agent, a feature works in the product from the first day, and later versions differ only in how refined they are. This is what design in code means. The whole process is in [`process.md`](specs/foundation/process.md): roles, the path from an idea to the main branch, what a plan holds, how work is shown and reviewed, and when it counts as done. In short:
 
 1. **An idea lands in the tracker.** Overy uses its own vault, and a team may use Jira or Linear. The agent reads the tracker through MCP, asks its questions there and writes the answers back, so nothing stays only in a chat.
 2. **The agent writes a plan in plan mode.** A person approves it, and it goes to `specs/work/plans/`. It has the context, the decisions, milestones, corner cases that become tests, a design review and the verification steps.
