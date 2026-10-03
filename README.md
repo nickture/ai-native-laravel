@@ -152,6 +152,15 @@ npx skills add nickture/skills
 
 **Precedence.** The Foundation is stronger than skills, `.ai/rules` and plans. When the project breaks a skill’s rule on purpose, the reason is written in the Foundation, and the agent follows the Foundation.
 
+## Components and styles
+
+The interface stands on two things the project doesn’t write itself: [shadcn-svelte](https://www.shadcn-svelte.com) components and [Tailwind CSS](https://tailwindcss.com) utilities. All of Overy’s own styling is built on top of them.
+
+- **Components.** shadcn-svelte sits in `resources/js/components/ui/` as vendor code. The rule is to leave it unedited and update it through the shadcn CLI. Overy broke this rule before the rule was written, and [`observations.md`](specs/work/observations.md) lists the files to move out. Overy’s own look and behavior go into wrappers outside `ui/`, and so do its own primitives. A new primitive appears only when nothing ready exists, and the reason is written in [`design.md`, section 15](specs/foundation/design.md#15-components).
+- **Styles.** Tailwind utilities on top of the design tokens in `app.css`. A component takes values only from tokens, and a missing token is added to `@theme` before it is used. The spacing step, breakpoints and the canonical form of utilities are in [section 6](specs/foundation/design.md#6-layout), the token rule is in [section 14](specs/foundation/design.md#14-tokens-before-components).
+
+So the agent builds a new screen from existing components and tokens, and the screen looks like the rest of the product from the first version.
+
 ## How a feature goes
 
 1. **An idea lands in the tracker.** Overy uses its own vault, and a team may use Jira or Linear. The agent reads the tracker through MCP, asks its questions there and writes the answers back, so nothing stays only in a chat.
