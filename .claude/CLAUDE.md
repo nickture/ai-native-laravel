@@ -10,7 +10,7 @@ Project context for Claude Code on top of the root `CLAUDE.md`. Boost assembles 
 
 ## Operating rules
 
-- **Branches = environments.** Work happens in `dev`; a push deploys staging `https://dev.overy.app` (+ demo `demo.dev.overy.app`). Prod `https://overy.app` is updated only through `composer run promote` (ff-merge `dev` → `main` + push). Locally: Herd `http://overy.test`.
+- **Branches = environments.** Each feature is built in its own branch and merged into `dev` after review (`specs/foundation/process.md`); a push to `dev` deploys staging `https://dev.overy.app` (+ demo `demo.dev.overy.app`). Prod `https://overy.app` is updated only through `composer run promote` (ff-merge `dev` → `main` + push). Locally: Herd `http://overy.test`.
 - **Prod is Laravel Octane (FrankenPHP)**, a long-running worker. After a deploy or migrate: `php artisan octane:reload`.
 - **Forge** is changed through **API v2** (`https://forge.laravel.com/api`, org-scoped; do not use `/api/v1`), except SSL certificates and changing a site’s repository: those are UI-only.
 - **Desktop:** before `native:build`, stop the Vite dev server (otherwise `public/hot` ends up in the bundle: a white screen). Do not add patches in `vendor/`. Other traps: `dev-commands.md`, “Pipeline traps”.

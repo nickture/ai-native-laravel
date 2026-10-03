@@ -153,7 +153,7 @@ Two kinds of skills work in this project.
 npx skills add nickture/skills
 ```
 
-**Precedence.** Where the Foundation says nothing, a skill rule applies. Where the two disagree, the Foundation wins: it is stronger than skills, `.ai/rules` and plans. When the project breaks a skill’s rule on purpose, the reason is written in the Foundation.
+**Precedence.** Where the Foundation says nothing, a skill rule applies. Where the two disagree, the Foundation wins: it is stronger than the Boost guidelines in `CLAUDE.md`, skills, `.ai/rules` and plans. When the project breaks a Boost or skill rule on purpose, the reason is written in the Foundation.
 
 ## Components and styles
 
@@ -170,7 +170,7 @@ The process rests on one fact: with the agent, a feature works in the product fr
 
 1. **An idea lands in the tracker.** Overy uses its own vault, and a team may use Jira or Linear. The agent reads the tracker through MCP, asks its questions there and writes the answers back, so nothing stays only in a chat.
 2. **The agent writes a plan in plan mode.** A person approves it, and it goes to `specs/work/plans/`. It has the context, the decisions, milestones, corner cases that become tests, a design review and the verification steps.
-3. **The product manager or designer builds the first version in a branch.** This is design in code: the agent builds the feature in the product, with its architecture, its components and demo data, without a separate mockup. The first version may look raw. It is shown as a link or a recording, with a note on what to judge and what isn’t ready.
+3. **The product manager or designer builds the first version in a branch.** This is design in code: the agent builds the feature in the product, with its architecture, its components and development data, without a separate mockup. The first version may look raw. It is shown as a link or a recording, with a note on what to judge and what isn’t ready.
 4. **Specialists review the branch.** The frontend developer, the backend developer and anyone whose area the change touches review it and refine the same branch, not rebuild it. It goes into the main branch when every reviewer accepts it and the checks are green.
 5. **When the plan is done,** its outcome goes into `specs/docs/` or `specs/foundation/`, and the file moves to `specs/archive/plans/`.
 6. **A finding that isn’t fixed right away** goes into `specs/work/observations.md` in the same pass. A closed entry is deleted from it.

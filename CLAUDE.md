@@ -22,7 +22,7 @@ A double usefulness test at every iteration:
 - **Schema-free evolution.** No required fields. A new use case → the user adds fields and a trait instead of asking for a feature.
 - **Progressive disclosure.** The full schema is in code from day 1; the UI reveals it per node based on behavior, without a global “advanced mode”.
 - **Crypto boundary from day 1.** All sync operations and controllers write through `ContentCodec`. MVP: `PassthroughCodec` (no-op, the server sees plaintext); Phase 9: `SodiumCodec` without rewriting domain code.
-- **Design in code.** A new feature is built in the product right away: on its architecture, existing components and demo data, without a separate mockup. The first version may be rough; after that it is refined, not rebuilt from scratch. A new UI primitive appears only when no ready-made one exists, and the reason is recorded in `specs/foundation/design.md`.
+- **Design in code.** A new feature is built in the product right away: on its architecture, existing components and development data, without a separate mockup. The first version may be rough; after that it is refined, not rebuilt from scratch. A new UI primitive appears only when no ready-made one exists, and the reason is recorded in `specs/foundation/design.md`.
 
 ## How project knowledge is organized
 
@@ -34,7 +34,7 @@ A double usefulness test at every iteration:
 | `specs/archive/` | Completed plans and closed phases | Not read unless asked |
 | Overy vault | Ideas, tasks and questions for the owner | Through MCP |
 
-**Precedence.** Foundation outranks skill rules, `.ai/rules` and plans: where they disagree, Foundation wins. If the project deliberately does not follow a skill rule, the reason is recorded in Foundation. If `docs/` disagrees with Foundation, or the code disagrees with `docs/`, that is drift, and it is recorded in `specs/work/observations.md`.
+**Precedence.** Foundation outranks the Boost guidelines in `CLAUDE.md`, skill rules, `.ai/rules` and plans: where they disagree, Foundation wins. If the project deliberately does not follow a Boost or skill rule, the reason is recorded in Foundation. If `docs/` disagrees with Foundation, or the code disagrees with `docs/`, that is drift, and it is recorded in `specs/work/observations.md`.
 
 **Lifecycle.** A new plan is written in `specs/work/plans/`. When the plan is done, its outcome is added to `docs/` or `foundation/`, and the file moves to `specs/archive/`. Links inside the archive are not fixed. A finding that is not fixed right away is recorded in `observations.md` in the same pass. A closed entry is deleted from there.
 
